@@ -1,7 +1,6 @@
-import type { Route } from "./+types/conseils";
 import { BarChart3, TrendingUp, ScanLine, Lightbulb } from "lucide-react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({}: any) {
   return [
     { title: "Mizane AI - Conseils" },
     { name: "description", content: "Conseils for Mizane AI" },
