@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({}: any) {
   return [
     { title: "My budget - Flux de saisie" },
     {
@@ -32,7 +32,7 @@ interface DetectedItem {
 
 type FlowState = "idle" | "loading" | "confirmation" | "editing";
 
-export default function Scan() {
+export default function DataInputFlow() {
   const [flowState, setFlowState] = useState<FlowState>("idle");
   const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -45,6 +45,7 @@ export default function Scan() {
   // Simuler un scan photo
   const handlePhotoScan = async () => {
     setFlowState("loading");
+    // Simulation du traitement IA
     setTimeout(() => {
       setDetectedItems([
         {
@@ -76,6 +77,7 @@ export default function Scan() {
   // Simuler un scan vocal
   const handleVoiceScan = async () => {
     setFlowState("loading");
+    // Simulation du traitement IA
     setTimeout(() => {
       setDetectedItems([
         {
