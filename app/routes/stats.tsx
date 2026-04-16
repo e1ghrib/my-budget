@@ -100,9 +100,6 @@ export default function Stats() {
               Statistiques intelligentes
             </h1>
           </div>
-          <button className="rounded-2xl bg-[#10b981] px-4 py-2 text-sm font-semibold text-white shadow-sm">
-            Scanner
-          </button>
         </div>
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
