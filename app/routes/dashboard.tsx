@@ -94,9 +94,6 @@ export default function Dashboard() {
               Budget intelligent
             </h1>
           </div>
-          <button className="inline-flex items-center gap-2 rounded-2xl bg-[#10b981] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-[#10b981]/20">
-            <ScanLine className="w-4 h-4" /> Scanner
-          </button>
         </div>
 
         <div className="mt-6 grid gap-4">
