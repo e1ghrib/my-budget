@@ -9,11 +9,10 @@ import {
   Edit2,
   X,
   CheckCircle2,
-  FileText,
 } from "lucide-react";
 import { useState } from "react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({}: any) {
   return [
     { title: "My budget - Flux de saisie" },
     {
@@ -33,7 +32,7 @@ interface DetectedItem {
 
 type FlowState = "idle" | "loading" | "confirmation" | "editing";
 
-export default function Scan() {
+export default function DataInputFlow() {
   const [flowState, setFlowState] = useState<FlowState>("idle");
   const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -46,6 +45,7 @@ export default function Scan() {
   // Simuler un scan photo
   const handlePhotoScan = async () => {
     setFlowState("loading");
+    // Simulation du traitement IA
     setTimeout(() => {
       setDetectedItems([
         {
@@ -77,6 +77,7 @@ export default function Scan() {
   // Simuler un scan vocal
   const handleVoiceScan = async () => {
     setFlowState("loading");
+    // Simulation du traitement IA
     setTimeout(() => {
       setDetectedItems([
         {
@@ -454,7 +455,7 @@ export default function Scan() {
       </div>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2 z-20">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2">
         <div className="flex justify-around">
           <a href="/" className="flex flex-col items-center text-gray-500">
             <BarChart3 className="w-6 h-6" />
@@ -470,13 +471,6 @@ export default function Scan() {
           >
             <ScanLine className="w-6 h-6" />
             <span className="text-xs">Scan</span>
-          </a>
-          <a
-            href="/factures"
-            className="flex flex-col items-center text-gray-500"
-          >
-            <FileText className="w-6 h-6" />
-            <span className="text-xs">Factures</span>
           </a>
           <a
             href="/conseils"

@@ -3,6 +3,7 @@ import {
   TrendingUp,
   ScanLine,
   Lightbulb,
+  FileText,
   ArrowDownRight,
   ArrowUpRight,
   Calendar,
@@ -13,10 +14,10 @@ import {
 
 export function meta({}: any) {
   return [
-    { title: "Mizane AI - Stats" },
+    { title: "My budget - Stats" },
     {
       name: "description",
-      content: "Smart spending and budget stats for Mizane AI",
+      content: "Smart spending and budget stats for My budget",
     },
   ];
 }
@@ -93,7 +94,7 @@ export default function Stats() {
       <header className="px-4 pt-6 pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-slate-500">Mizane AI</p>
+            <p className="text-sm text-slate-500">My budget</p>
             <h1 className="text-2xl font-semibold">
               Statistiques intelligentes
             </h1>
@@ -260,6 +261,13 @@ export default function Stats() {
           <a href="/scan" className="flex flex-col items-center text-slate-500">
             <ScanLine className="w-6 h-6" />
             <span className="text-[11px]">Scan</span>
+          </a>
+          <a
+            href="/factures"
+            className="flex flex-col items-center text-slate-500"
+          >
+            <FileText className="w-6 h-6" />
+            <span className="text-[11px]">Factures</span>
           </a>
           <a
             href="/conseils"
