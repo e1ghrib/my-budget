@@ -2,329 +2,214 @@ import { useState } from "react";
 import {
   BarChart3,
   TrendingUp,
-  Plus,
   Lightbulb,
-  FileText,
   Sparkles,
-  TrendingDown,
   Wallet,
-  AlertCircle,
   CheckCircle2,
+  PiggyBank,
+  Coffee,
+  Zap,
+  Target,
+  ShoppingCart,
+  ChevronRight,
+  Leaf,
 } from "lucide-react";
 import BottomNav from "~/BottomNav";
 
-export function meta({}: any) {
-  return [
-    { title: "My budget - Conseils" },
-    { name: "description", content: "Conseils for My budget" },
-  ];
-}
+type Category = "Tous" | "AI" | "Courses" | "Factures" | "Épargne";
 
-// Composant: Conseils Personnalisés IA
 function ConseilsPersonnalisesIA() {
   const [iaState, setIaState] = useState<"idle" | "loading" | "done">("idle");
 
-  const handleGenerateAdvice = () => {
+  const handleGenerate = () => {
     setIaState("loading");
-    setTimeout(() => {
-      setIaState("done");
-    }, 2000);
+    setTimeout(() => setIaState("done"), 1800);
   };
 
-  const handleReset = () => {
-    setIaState("idle");
-  };
-
-  // État IDLE - Bouton d'activation
   if (iaState === "idle") {
     return (
-      <div className="mt-6 mb-6">
-        <button
-          onClick={handleGenerateAdvice}
-          className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold py-4 px-6 rounded-xl   flex items-center justify-center gap-3 group"
-        >
-          <Sparkles className="w-5 h-5 " />
-          <span>Générer mes conseils IA</span>
-        </button>
+      <div className="relative overflow-hidden rounded-3xl bg-emerald-900 p-6 text-white shadow-lg shadow-emerald-900/20">
+        <Leaf className="absolute -right-4 -top-4 h-24 w-24 opacity-10 rotate-12" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="bg-emerald-500/20 p-1.5 rounded-lg">
+              <Sparkles size={16} className="text-emerald-300" />
+            </div>
+            <h3 className="text-lg font-bold">Analyse Intelligente</h3>
+          </div>
+          <p className="text-sm text-emerald-100/80 leading-snug">
+            Laissez notre IA scanner vos habitudes pour identifier vos plus
+            grandes opportunités d'épargne.
+          </p>
+          <button
+            onClick={handleGenerate}
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-400 py-3.5 font-black text-emerald-950 transition-all active:scale-[0.98] hover:bg-emerald-300"
+          >
+            Générer mes conseils
+          </button>
+        </div>
       </div>
     );
   }
 
-  // État LOADING - Loader stylé
   if (iaState === "loading") {
     return (
-      <div className="mt-6 mb-6 bg-white rounded-2xl p-8 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#ecfdf5] to-[#d1fae5] rounded-full mb-4 animate-pulse">
-          <Sparkles className="w-8 h-8 text-[#10b981] animate-spin" />
+      <div className="flex flex-col items-center justify-center rounded-3xl bg-emerald-50/50 p-10 border-2 border-dashed border-emerald-200">
+        <div className="relative flex h-16 w-16 items-center justify-center">
+          <div className="absolute h-full w-full animate-ping rounded-full bg-emerald-200"></div>
+          <Leaf className="h-8 w-8 text-emerald-600 animate-bounce" />
         </div>
-        <h3 className="text-xl font-bold text-[#1e293b] mt-4">
-          IA en cours d'analyse...
-        </h3>
-        <p className="text-sm text-gray-600 mt-2">
-          L'IA analyse vos statistiques de la semaine...
+        <p className="mt-4 font-bold text-emerald-900">
+          Calcul des économies...
         </p>
       </div>
     );
   }
 
-  // État DONE - Affichage des conseils
   return (
-    <div className="mt-6 mb-6 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-bold text-[#1e293b]">
-          Vos conseils personnalisés IA
+    <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
+      <div className="flex items-center justify-between px-1">
+        <h3 className="font-bold text-emerald-900 flex items-center gap-2">
+          <Sparkles size={18} className="text-emerald-500" /> Pépites pour vous
         </h3>
         <button
-          onClick={handleReset}
-          className="text-sm text-[#10b981] font-semibold hover:text-[#059669] transition-colors"
+          onClick={() => setIaState("idle")}
+          className="text-xs font-bold text-emerald-600 underline"
         >
-          Régénérer
+          Relancer
         </button>
       </div>
 
-      {/* Conseil 1: Alimentation - Alerte (Orange) */}
-      <div className="bg-white rounded-2xl p-5 border-l-4 border-orange-500 hover:shadow-md transition-shadow">
-        <div className="flex items-start gap-3">
-          <TrendingDown className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
-          <div className="flex-1">
-            <p className="font-bold text-[#1e293b]">Dépenses Alimentation</p>
-            <p className="text-sm text-orange-700 mt-1 font-medium">
-              ⚠️ Alerte: +25% cette semaine
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Vos dépenses en supermarché ont augmenté de 25%. Conseil :
-              Privilégiez les achats en gros pour les produits secs (farine,
-              huile).
+      <div className="rounded-2xl bg-white p-4 border-l-4 border-emerald-500 shadow-sm">
+        <div className="flex gap-4">
+          <div className="rounded-xl bg-emerald-100 p-2.5 text-emerald-700 h-fit">
+            <ShoppingCart size={20} />
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 text-sm">
+              Courses : -150 DH possibles
+            </h4>
+            <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+              Vos achats de produits laitiers sont 20% plus élevés que la
+              moyenne. Testez la marque distributeur ce mois-ci.
             </p>
           </div>
         </div>
       </div>
-
-      {/* Conseil 2: Loisirs - Alerte (Orange) */}
-      <div className="bg-white rounded-2xl p-5 border-l-4 border-blue-500 hover:shadow-md transition-shadow">
-        <div className="flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
-          <div className="flex-1">
-            <p className="font-bold text-[#1e293b]">Budget Café & Loisirs</p>
-            <p className="text-sm text-blue-700 mt-1 font-medium">
-              ⏱️ À 90% du budget
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Vous avez atteint 90% de votre budget 'Café'. Essayez de limiter à
-              une sortie par jour pour finir le mois sereinement.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Conseil 3: Épargne - Succès (Vert) */}
-      <div className="bg-white rounded-2xl p-5 border-l-4 border-[#10b981] hover:shadow-md transition-shadow">
-        <div className="flex items-start gap-3">
-          <CheckCircle2 className="w-5 h-5 text-[#10b981] mt-1 flex-shrink-0" />
-          <div className="flex-1">
-            <p className="font-bold text-[#1e293b]">Objectif Épargne</p>
-            <p className="text-sm text-[#10b981] mt-1 font-medium">
-              ✨ Bonne progression
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Statistique : En économisant 10 DH de plus par jour, vous
-              atteindrez votre objectif 'Aïd' plus tôt que prévu.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <button
-        onClick={handleReset}
-        className="w-full mt-4 bg-slate-100 text-slate-700 font-semibold py-3 rounded-xl hover:bg-slate-200 transition-colors"
-      >
-        Fermer les conseils
-      </button>
     </div>
   );
 }
 
 export default function Conseils() {
+  const [activeTab, setActiveTab] = useState<Category>("Tous");
+  const categories: Category[] = ["Tous", "Courses", "Factures", "Épargne"];
+
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-20">
-      {/* Sticky Header */}
-      <div className="bg-white border-b border-slate-100 p-4 sticky top-0 z-10">
-        <div className="flex items-center justify-between mb-3">
+    <div className="min-h-screen  pb-24">
+      {/* Header with Green Gradient background */}
+      <header className="bg-gradient-to-b  px-6 pt-12 pb-6">
+        <div className="flex items-center gap-3">
+          <div className="bg-emerald-600 p-2 rounded-xl text-white shadow-lg ">
+            <TrendingUp size={24} />
+          </div>
           <div>
-            <h1 className="text-2xl font-bold">Conseils budgétaires</h1>
-            <p className="text-sm text-gray-500 mt-1">
-              Optimisez votre gestion financière
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="px-4 space-y-6 mt-4">
-        {/* Conseils Personnalisés IA */}
-        <ConseilsPersonnalisesIA />
-        {/* Section: Conseils généraux */}
-        <div className="space-y-3">
-          <h2 className="text-lg font-bold text-[#1e293b] flex items-center gap-2">
-            <Lightbulb className="w-5 h-5 text-[#10b981]" />
-            Conseils essentiels
-          </h2>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              📊 Suivez vos dépenses régulièrement
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Enregistrez vos transactions quotidiennement pour mieux comprendre
-              vos habitudes de dépense et identifier les domaines où vous pouvez
-              économiser.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              💰 Établissez un budget mensuel
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Fixez un objectif de budget par catégorie (alimentation,
-              transport, loisirs) et tenez-vous y pour mieux contrôler vos
-              dépenses.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">🎯 La règle 50/30/20</p>
-            <p className="text-sm text-gray-600 mt-2">
-              Divisez votre revenu en 50% besoins, 30% envies, 20% épargne.
-              C'est une stratégie éprouvée pour équilibrer finances et qualité
-              de vie.
+            <h1 className="text-2xl font-black text-emerald-950 tracking-tight">
+              Conseils
+            </h1>
+            <p className="text-emerald-700/70 text-xs font-medium uppercase tracking-widest">
+              Growth Mindset
             </p>
           </div>
         </div>
 
-        {/* Section: Économies au quotidien */}
-        <div className="space-y-3">
-          <h2 className="text-lg font-bold text-[#1e293b] flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-[#10b981]" />
-            Économies au quotidien
-          </h2>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              🛒 Faites une liste avant de faire vos courses
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Les achats impulsifs coûtent cher. Une liste bien préparée vous
-              aide à rester concentré et à économiser jusqu'à 30% sur vos
-              courses.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              ☕ Réduisez les petites dépenses
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Les petits achats quotidiens (café, snacks) s'accumulent
-              rapidement. En les limiter peut vous faire économiser 50-100 DH
-              par semaine.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              🔍 Comparez vos tarifs d'abonnements
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Téléphone, internet, streaming... Vérifiez régulièrement si vos
-              tarifs sont compétitifs. Les offres promotionnelles changent
-              constamment.
-            </p>
-          </div>
+        <div className="mt-8 flex gap-2 overflow-x-auto no-scrollbar">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveTab(cat)}
+              className={`px-6 py-2.5 rounded-2xl text-sm font-bold transition-all ${
+                activeTab === cat
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-200"
+                  : "bg-white text-emerald-700 border border-emerald-100"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
+      </header>
 
-        {/* Section: Gestion des factures */}
-        <div className="space-y-3">
-          <h2 className="text-lg font-bold text-[#1e293b] flex items-center gap-2">
-            <FileText className="w-5 h-5 text-[#10b981]" />
-            Gestion des factures
-          </h2>
+      <main className="px-5 space-y-8">
+        {activeTab === "Tous" && <ConseilsPersonnalisesIA />}
 
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              📋 Automatisez vos factures
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Mettez en place des prélèvements automatiques pour vos factures
-              récurrentes. Cela évite les oublis et les frais de retard.
-            </p>
+        <section className="space-y-4">
+          <div className="flex items-center gap-2 mb-2 px-1 text-emerald-900/40">
+            <Lightbulb size={16} />
+            <span className="text-xs font-bold uppercase tracking-tighter">
+              Bibliothèque de conseils
+            </span>
           </div>
 
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              ⚡ Économies d'énergie
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Réduisez votre consommation électrique (LED, éteindre les
-              appareils inutilisés). Cela peut baisser votre facture de 15-20%.
-            </p>
-          </div>
+          <AdviceCard
+            icon={<Target className="text-emerald-600" />}
+            title="La règle 50/30/20"
+            desc="L'automatisme est la clé. Séparez votre salaire dès réception."
+            impact="Haut Impact"
+            difficulty="Expert"
+          />
 
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              💧 Contrôlez votre consommation d'eau
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Des douches plus courtes, des fuites réparées rapidement... Les
-              petits gestes réduisent votre facture et l'impact environnemental.
-            </p>
-          </div>
-        </div>
+          <AdviceCard
+            icon={<Coffee className="text-emerald-500" />}
+            title="Micro-Épargne Café"
+            desc="Un café 'maison' économise 300 DH/mois. Calculez sur un an !"
+            impact="+3.600 DH/an"
+            difficulty="Débutant"
+          />
 
-        {/* Section: Investissement et épargne */}
-        <div className="space-y-3">
-          <h2 className="text-lg font-bold text-[#1e293b] flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-[#10b981]" />
-            Épargne & Investissement
-          </h2>
+          <AdviceCard
+            icon={<Zap className="text-emerald-400" />}
+            title="Facture ONEE"
+            desc="Éteignez vos multiprises la nuit. Jusqu'à 8% d'économie."
+            impact="-50 DH/mois"
+            difficulty="Moyen"
+          />
+        </section>
+      </main>
 
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              🏦 Commencez à épargner petit à petit
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Même 50 DH par semaine d'épargne représente 2600 DH par an. Les
-              petits efforts ajoutés au fil du temps créent une vraie sécurité
-              financière.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              🎯 Définissez des objectifs clairs
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              "Je veux économiser pour des vacances" est plus motivant que "Je
-              dois économiser". Donnez-vous des objectifs concrets à court
-              terme.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow">
-            <p className="font-semibold text-[#1e293b]">
-              📈 Augmentez votre fonds d'urgence
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Essayez de garder l'équivalent de 3-6 mois de dépenses en réserve.
-              Cela vous protège contre les imprévus sans recourir à
-              l'endettement.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Navigation */}
       <BottomNav />
+    </div>
+  );
+}
+
+function AdviceCard({ icon, title, desc, impact, difficulty }: any) {
+  return (
+    <div className="flex gap-4 rounded-[2rem] bg-white p-5 shadow-sm border border-emerald-50 hover:border-emerald-200 transition-all group active:bg-emerald-50/50">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 group-hover:bg-emerald-100 transition-colors">
+        {icon}
+      </div>
+      <div className="flex flex-col flex-1">
+        <div className="flex items-center justify-between">
+          <h4 className="text-sm font-black text-slate-800">{title}</h4>
+          <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-tighter">
+            {difficulty}
+          </span>
+        </div>
+        <p className="mt-1 text-xs text-slate-500 leading-relaxed pr-2">
+          {desc}
+        </p>
+        <div className="mt-3 flex items-center gap-1.5">
+          <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="text-[11px] font-bold text-emerald-700 italic">
+            {impact}
+          </span>
+        </div>
+      </div>
+      <div className="flex items-center">
+        <ChevronRight
+          size={18}
+          className="text-emerald-200 group-hover:text-emerald-500 transition-colors"
+        />
+      </div>
     </div>
   );
 }

@@ -107,13 +107,13 @@ export default function FullStatsPage() {
               <span className="text-sm font-bold text-slate-400">DH</span>
             </div>
             <p className="mt-1 text-[13px] font-semibold text-[#f59e0b]">
-              ↑ Grâce à Mizane AI
+              ↑ Grâce à AI
             </p>
           </div>
         </div>
 
         {/* Evolution Chart Section */}
-        <section className="bg-white p-6 rounded-[32px] shadow-sm relative overflow-hidden">
+        <section className="bg-white p-6 rounded-4xl shadow-sm relative overflow-hidden">
           <div className="flex justify-between items-start mb-4">
             <div>
               <h2 className="text-[17px] font-bold text-[#0f172a]">
@@ -153,11 +153,6 @@ export default function FullStatsPage() {
               ))}
             </div>
           </div>
-
-          <button className="absolute right-5 bottom-12 bg-[#34d399] text-white pl-5 pr-6 py-3.5 rounded-[20px] flex items-center gap-3 shadow-xl shadow-emerald-200/50 active:scale-95 transition-transform">
-            <Maximize size={20} strokeWidth={2.5} />
-            <span className="font-bold text-[15px]">Scanner</span>
-          </button>
         </section>
 
         {/* Weekly Bar Chart Section */}
