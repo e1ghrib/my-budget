@@ -108,17 +108,6 @@ export default function Dashboard() {
                     {solde} DH
                   </p>
                 </div>
-                <div className="card bg-base-200 shadow-md">
-                  <div className="card-body p-4">
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-5 h-5 text-success" />
-                      <span className="text-base-content">Budget sécurisé</span>
-                    </div>
-                    <p className="mt-3 text-lg font-semibold text-base-content">
-                      +320 DH économisé
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <div className="mt-5 card bg-base-200 shadow-md">
