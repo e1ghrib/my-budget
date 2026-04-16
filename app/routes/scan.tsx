@@ -57,10 +57,10 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
   const [submitted, setSubmitted] = useState(false);
 
   const categories = [
-    { id: "alimentation", label: "Alimentation", icon: Utensils, emoji: "🍔" },
-    { id: "fixe", label: "Fixe", icon: Home, emoji: "🏠" },
-    { id: "transport", label: "Transport", icon: Truck, emoji: "🚗" },
-    { id: "loisirs", label: "Loisirs", icon: Coffee, emoji: "☕" },
+    { id: "alimentation", label: "Alimentation", icon: Utensils},
+    { id: "fixe", label: "Fixe", icon: Home },
+    { id: "transport", label: "Transport", icon: Truck },
+    { id: "loisirs", label: "Loisirs", icon: Coffee },
   ];
 
   const handleSubmit = () => {
@@ -121,20 +121,6 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
           >
             <X className="w-6 h-6" />
           </button>
-        </div>
-        <div className="flex gap-2">
-          <a
-            href="/factures"
-            className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
-          >
-            Factures
-          </a>
-          <a
-            href="/scan"
-            className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-center text-sm"
-          >
-            Scanner
-          </a>
         </div>
       </div>
 
@@ -197,35 +183,7 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
           </div>
         </div>
 
-        {/* Type de dépense - Toggle */}
-        <div>
-          <label className="block text-sm font-bold text-[#1e293b] mb-3">
-            Type de dépense <span className="text-orange-500">*</span>
-          </label>
-          <div className="flex items-center gap-4 bg-white rounded-xl p-4 border border-slate-100">
-            <button
-              onClick={() => setIsRecurring(false)}
-              className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all ${
-                !isRecurring
-                  ? "bg-[#10b981] text-white"
-                  : "bg-slate-100 text-[#1e293b]"
-              }`}
-            >
-              Ponctuelle
-            </button>
-            <button
-              onClick={() => setIsRecurring(true)}
-              className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all ${
-                isRecurring
-                  ? "bg-[#10b981] text-white"
-                  : "bg-slate-100 text-[#1e293b]"
-              }`}
-            >
-              Fixe
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 mt-2\">نوع النفقة</p>
-        </div>
+        
 
         {/* Jour du rappel (conditonnel) */}
         {isRecurring && (
@@ -433,20 +391,6 @@ export default function Scan() {
               </p>
             </div>
           </div>
-          <div className="flex gap-2">
-            <a
-              href="/factures"
-              className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
-            >
-              Factures
-            </a>
-            <button
-              onClick={() => alert("Scanner page déjà active")}
-              className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-sm"
-            >
-              Scanner
-            </button>
-          </div>
         </div>
 
         <div className="px-4 space-y-4 mt-4">
@@ -540,20 +484,6 @@ export default function Scan() {
             >
               <X className="w-6 h-6" />
             </button>
-          </div>
-          <div className="flex gap-2">
-            <a
-              href="/factures"
-              className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
-            >
-              Factures
-            </a>
-            <a
-              href="/scan"
-              className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-center text-sm"
-            >
-              Scanner
-            </a>
           </div>
         </div>
 

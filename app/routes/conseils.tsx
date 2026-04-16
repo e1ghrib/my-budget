@@ -11,6 +11,7 @@ import {
   AlertCircle,
   CheckCircle2,
 } from "lucide-react";
+import BottomNav from "~/BottomNav";
 
 export function meta({}: any) {
   return [
@@ -155,20 +156,6 @@ export default function Conseils() {
               Optimisez votre gestion financière
             </p>
           </div>
-        </div>
-        <div className="flex gap-2">
-          <a
-            href="/factures"
-            className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
-          >
-            Factures
-          </a>
-          <a
-            href="/scan"
-            className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-center text-sm"
-          >
-            Scanner
-          </a>
         </div>
       </div>
 
@@ -337,36 +324,7 @@ export default function Conseils() {
       </div>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2">
-        <div className="flex justify-around">
-          <a href="/" className="flex flex-col items-center text-gray-500">
-            <BarChart3 className="w-6 h-6" />
-            <span className="text-xs">Dashboard</span>
-          </a>
-          <a href="/stats" className="flex flex-col items-center text-gray-500">
-            <TrendingUp className="w-6 h-6" />
-            <span className="text-xs">Stats</span>
-          </a>
-          <a href="/scan" className="flex flex-col items-center text-gray-500">
-            <Plus className="w-6 h-6" />
-            <span className="text-xs">Ajouter</span>
-          </a>
-          <a
-            href="/factures"
-            className="flex flex-col items-center text-gray-500"
-          >
-            <FileText className="w-6 h-6" />
-            <span className="text-xs">Factures</span>
-          </a>
-          <a
-            href="/conseils"
-            className="flex flex-col items-center text-[#10b981] font-medium"
-          >
-            <Lightbulb className="w-6 h-6" />
-            <span className="text-xs">Conseils</span>
-          </a>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }
