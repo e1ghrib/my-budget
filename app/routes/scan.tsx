@@ -10,6 +10,14 @@ import {
   X,
   CheckCircle2,
   FileText,
+  Plus,
+  Utensils,
+  Home,
+  Truck,
+  Coffee,
+  Calendar,
+  ArrowRight,
+  Check,
 } from "lucide-react";
 import { useState } from "react";
 import BottomNav from "../BottomNav";
@@ -29,10 +37,265 @@ interface DetectedItem {
   name: string;
   price: number;
   category: string;
-  source: "scan" | "voice";
+  source: "scan" | "voice" | "manual";
 }
 
-type FlowState = "idle" | "loading" | "confirmation" | "editing";
+type FlowState = "idle" | "loading" | "confirmation" | "editing" | "manual";
+
+// Composant: Formulaire de saisie manuelle de dépenses
+interface ManualExpenseFormProps {
+  onSubmit: (item: DetectedItem) => void;
+  onCancel: () => void;
+}
+
+function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
+  const [formName, setFormName] = useState("");
+  const [formAmount, setFormAmount] = useState("");
+  const [formCategory, setFormCategory] = useState("Alimentation");
+  const [isRecurring, setIsRecurring] = useState(false);
+  const [reminderDay, setReminderDay] = useState("28");
+  const [submitted, setSubmitted] = useState(false);
+
+  const categories = [
+    { id: "alimentation", label: "Alimentation", icon: Utensils, emoji: "🍔" },
+    { id: "fixe", label: "Fixe", icon: Home, emoji: "🏠" },
+    { id: "transport", label: "Transport", icon: Truck, emoji: "🚗" },
+    { id: "loisirs", label: "Loisirs", icon: Coffee, emoji: "☕" },
+  ];
+
+  const handleSubmit = () => {
+    if (!formName.trim() || !formAmount.trim()) {
+      alert("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
+
+    const newItem: DetectedItem = {
+      id: `manual-${Date.now()}`,
+      name: formName.trim(),
+      price: parseFloat(formAmount),
+      category: formCategory,
+      source: "manual",
+    };
+
+    setSubmitted(true);
+    setTimeout(() => {
+      onSubmit(newItem);
+      setFormName("");
+      setFormAmount("");
+      setFormCategory("Alimentation");
+      setIsRecurring(false);
+      setReminderDay("28");
+      setSubmitted(false);
+    }, 1500);
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-20">
+        <div className="bg-white border-b border-slate-100 p-4 sticky top-0 z-10">
+          <h1 className="text-2xl font-bold">Saisir des données</h1>
+        </div>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-[#ecfdf5] rounded-full mb-4 animate-pulse">
+              <CheckCircle2 className="w-10 h-10 text-[#10b981]" />
+            </div>
+            <h2 className="text-2xl font-bold text-[#1e293b] mt-4">Succès!</h2>
+            <p className="text-sm text-gray-600 mt-2">
+              Dépense ajoutée avec succès
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-20">
+      <div className="bg-white border-b border-slate-100 p-4 sticky top-0 z-10">
+        <div className="flex items-center justify-between mb-3">
+          <h1 className="text-2xl font-bold">Saisie manuelle</h1>
+          <button
+            onClick={onCancel}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        <div className="flex gap-2">
+          <a
+            href="/factures"
+            className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
+          >
+            Factures
+          </a>
+          <a
+            href="/scan"
+            className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-center text-sm"
+          >
+            Scanner
+          </a>
+        </div>
+      </div>
+
+      <div className="px-4 py-6 space-y-6">
+        {/* Nom de l'article */}
+        <div>
+          <label className="block text-sm font-bold text-[#1e293b] mb-2">
+            Nom de l'article <span className="text-orange-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Ex: Courses Hanout"
+            value={formName}
+            onChange={(e) => setFormName(e.target.value)}
+            className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10b981] text-[#1e293b] placeholder-gray-500"
+          />
+        </div>
+
+        {/* Montant */}
+        <div>
+          <label className="block text-sm font-bold text-[#1e293b] mb-2">
+            Montant <span className="text-orange-500">*</span>
+          </label>
+          <div className="relative">
+            <input
+              type="number"
+              placeholder="0.00"
+              value={formAmount}
+              onChange={(e) => setFormAmount(e.target.value)}
+              step="0.01"
+              min="0"
+              className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10b981] text-[#1e293b] placeholder-gray-500"
+            />
+            <span className="absolute right-4 top-3 text-[#1e293b] font-bold">
+              DH
+            </span>
+          </div>
+        </div>
+
+        {/* Catégorie */}
+        <div>
+          <label className="block text-sm font-bold text-[#1e293b] mb-3">
+            Catégorie <span className="text-orange-500">*</span>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setFormCategory(cat.label)}
+                className={`rounded-xl py-3 px-3 font-semibold transition-all flex items-center justify-center gap-2 ${
+                  formCategory === cat.label
+                    ? "bg-[#10b981] text-white shadow-lg shadow-[#10b981]/20"
+                    : "bg-white border border-slate-100 text-[#1e293b] hover:border-[#10b981]"
+                }`}
+              >
+                <span>{cat.emoji}</span>
+                <span className="text-sm">{cat.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Type de dépense - Toggle */}
+        <div>
+          <label className="block text-sm font-bold text-[#1e293b] mb-3">
+            Type de dépense <span className="text-orange-500">*</span>
+          </label>
+          <div className="flex items-center gap-4 bg-white rounded-xl p-4 border border-slate-100">
+            <button
+              onClick={() => setIsRecurring(false)}
+              className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all ${
+                !isRecurring
+                  ? "bg-[#10b981] text-white"
+                  : "bg-slate-100 text-[#1e293b]"
+              }`}
+            >
+              Ponctuelle
+            </button>
+            <button
+              onClick={() => setIsRecurring(true)}
+              className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all ${
+                isRecurring
+                  ? "bg-[#10b981] text-white"
+                  : "bg-slate-100 text-[#1e293b]"
+              }`}
+            >
+              Fixe
+            </button>
+          </div>
+          <p className="text-xs text-gray-500 mt-2\">نوع النفقة</p>
+        </div>
+
+        {/* Jour du rappel (conditonnel) */}
+        {isRecurring && (
+          <div className="bg-[#ecfdf5] rounded-xl p-4 border border-[#10b981]/20">
+            <label className="block text-sm font-bold text-[#1e293b] mb-2 flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-[#10b981]" />
+              Jour du rappel
+            </label>
+            <select
+              value={reminderDay}
+              onChange={(e) => setReminderDay(e.target.value)}
+              className="w-full bg-white border border-[#10b981]/30 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#10b981] text-[#1e293b] font-medium"
+            >
+              {[...Array(31)].map((_, i) => (
+                <option key={i + 1} value={String(i + 1)}>
+                  Chaque {i + 1} du mois
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-gray-500 mt-2\">يوم التذكير الشهري</p>
+          </div>
+        )}
+
+        {/* Bouton d'ajout */}
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold py-4 px-6 rounded-xl hover:shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mt-8"
+        >
+          <Plus className="w-5 h-5" />
+          Ajouter au budget
+        </button>
+      </div>
+
+      {/* Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2">
+        <div className="flex justify-around">
+          <a href="/" className="flex flex-col items-center text-gray-500">
+            <BarChart3 className="w-6 h-6" />
+            <span className="text-xs">Dashboard</span>
+          </a>
+          <a href="/stats" className="flex flex-col items-center text-gray-500">
+            <TrendingUp className="w-6 h-6" />
+            <span className="text-xs">Stats</span>
+          </a>
+          <a
+            href="/scan"
+            className="flex flex-col items-center text-[#10b981] font-medium"
+          >
+            <Plus className="w-6 h-6" />
+            <span className="text-xs">Ajouter</span>
+          </a>
+          <a
+            href="/conseils"
+            className="flex flex-col items-center text-gray-500"
+          >
+            <Lightbulb className="w-6 h-6" />
+            <span className="text-xs">Conseils</span>
+          </a>
+          <a
+            href="/factures"
+            className="flex flex-col items-center text-gray-500"
+          >
+            <FileText className="w-6 h-6" />
+            <span className="text-xs">Factures</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  );
+}
 
 export default function Scan() {
   const [flowState, setFlowState] = useState<FlowState>("idle");
@@ -141,18 +404,52 @@ export default function Scan() {
     setFlowState("idle");
   };
 
+  // Ajouter un élément manuel
+  const handleAddManualItem = (item: DetectedItem) => {
+    setDetectedItems([...detectedItems, item]);
+    setFlowState("confirmation");
+  };
+
+  // État MANUAL - Formulaire de saisie manuelle
+  if (flowState === "manual") {
+    return (
+      <ManualExpenseForm
+        onSubmit={handleAddManualItem}
+        onCancel={() => setFlowState("idle")}
+      />
+    );
+  }
+
   // État IDLE - Boutons de capture
   if (flowState === "idle") {
     return (
       <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-20">
-        <div className="p-4">
-          <h1 className="text-2xl font-bold">Saisir des données</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Capturez vos reçus ou dictez vos dépenses
-          </p>
+        <div className="bg-white border-b border-slate-100 p-4 sticky top-0 z-10">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h1 className="text-2xl font-bold">Saisir des données</h1>
+              <p className="text-sm text-gray-500 mt-1">
+                Capturez vos reçus ou dictez vos dépenses
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <a
+              href="/factures"
+              className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
+            >
+              Factures
+            </a>
+            <button
+              onClick={() => alert("Scanner page déjà active")}
+              className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-sm"
+            >
+              Scanner
+            </button>
+          </div>
         </div>
 
-        <div className="px-4 space-y-4">
+        <div className="px-4 space-y-4 mt-4">
           {/* Photo Scan Button */}
           <button
             onClick={handlePhotoScan}
@@ -181,6 +478,22 @@ export default function Scan() {
               <p className="font-semibold text-[#1e293b]">Dicter une dépense</p>
               <p className="text-sm text-gray-500">
                 Décrivez votre transaction à voix haute
+              </p>
+            </div>
+          </button>
+
+          {/* Manual Entry Button */}
+          <button
+            onClick={() => setFlowState("manual")}
+            className="w-full bg-white rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow border-2 border-[#10b981]/30"
+          >
+            <div className="bg-[#ecfdf5] rounded-full p-4">
+              <Plus className="w-6 h-6 text-[#10b981]" />
+            </div>
+            <div className="text-left flex-1">
+              <p className="font-semibold text-[#1e293b]">Saisie manuelle</p>
+              <p className="text-sm text-gray-500">
+                Entrez votre dépense manuellement
               </p>
             </div>
           </button>
@@ -216,14 +529,32 @@ export default function Scan() {
   if (flowState === "editing" && editingId) {
     return (
       <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-20">
-        <div className="p-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Éditer l'élément</h1>
-          <button
-            onClick={() => setFlowState("confirmation")}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            <X className="w-6 h-6" />
-          </button>
+        <div className="bg-white border-b border-slate-100 p-4 sticky top-0 z-10">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h1 className="text-2xl font-bold">Éditer l'élément</h1>
+            </div>
+            <button
+              onClick={() => setFlowState("confirmation")}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex gap-2">
+            <a
+              href="/factures"
+              className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
+            >
+              Factures
+            </a>
+            <a
+              href="/scan"
+              className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-center text-sm"
+            >
+              Scanner
+            </a>
+          </div>
         </div>
 
         <div className="px-4 space-y-6">
@@ -297,14 +628,32 @@ export default function Scan() {
   // État CONFIRMATION - Liste de confirmation
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-24">
-      <div className="p-4">
-        <h1 className="text-2xl font-bold">Confirmation des données</h1>
-        <p className="text-sm text-gray-500 mt-1">
-          {detectedItems.length} élément(s) détecté(s)
-        </p>
+      <div className="bg-white border-b border-slate-100 p-4 sticky top-0 z-10">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h1 className="text-2xl font-bold">Confirmation des données</h1>
+            <p className="text-sm text-gray-500 mt-1">
+              {detectedItems.length} élément(s) détecté(s)
+            </p>
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <a
+            href="/factures"
+            className="flex-1 bg-slate-100 text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm"
+          >
+            Factures
+          </a>
+          <a
+            href="/scan"
+            className="flex-1 bg-[#10b981] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#059669] transition-colors text-center text-sm"
+          >
+            Scanner
+          </a>
+        </div>
       </div>
 
-      <div className="px-4 space-y-3">
+      <div className="px-4 space-y-3 mt-4">
         {detectedItems.map((item) => (
           <div
             key={item.id}
