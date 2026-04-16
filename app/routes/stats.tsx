@@ -1,7 +1,6 @@
-import type { Route } from "./+types/stats";
 import { BarChart3, TrendingUp, ScanLine, Lightbulb } from "lucide-react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({}: any) {
   return [
     { title: "Mizane AI - Stats" },
     { name: "description", content: "Statistics for Mizane AI" },
