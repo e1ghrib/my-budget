@@ -4,13 +4,14 @@ import {
   ScanLine,
   Lightbulb,
   FileText,
+  Plus,
 } from "lucide-react";
 import { Link, useLocation } from "react-router";
 
 const navItems = [
   { href: "/", icon: BarChart3, label: "Dashboard" },
   { href: "/stats", icon: TrendingUp, label: "Stats" },
-  { href: "/scan", icon: ScanLine, label: "Scan" },
+  { href: "/scan", icon: Plus, label: "Ajouter" },
   { href: "/factures", icon: FileText, label: "Factures" },
   { href: "/conseils", icon: Lightbulb, label: "Conseils" },
 ];
