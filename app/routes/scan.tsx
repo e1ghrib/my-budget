@@ -57,7 +57,7 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
   const [submitted, setSubmitted] = useState(false);
 
   const categories = [
-    { id: "alimentation", label: "Alimentation", icon: Utensils},
+    { id: "alimentation", label: "Alimentation", icon: Utensils },
     { id: "fixe", label: "Fixe", icon: Home },
     { id: "transport", label: "Transport", icon: Truck },
     { id: "loisirs", label: "Loisirs", icon: Coffee },
@@ -154,9 +154,6 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
               min="0"
               className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10b981] text-[#1e293b] placeholder-gray-500"
             />
-            <span className="absolute right-4 top-3 text-[#1e293b] font-bold">
-              DH
-            </span>
           </div>
         </div>
 
@@ -165,25 +162,23 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
           <label className="block text-sm font-bold text-[#1e293b] mb-3">
             Catégorie <span className="text-orange-500">*</span>
           </label>
-          <div className="grid grid-cols-2 gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setFormCategory(cat.label)}
-                className={`rounded-xl py-3 px-3 font-semibold transition-all flex items-center justify-center gap-2 ${
-                  formCategory === cat.label
-                    ? "bg-[#10b981] text-white shadow-lg shadow-[#10b981]/20"
-                    : "bg-white border border-slate-100 text-[#1e293b] hover:border-[#10b981]"
-                }`}
-              >
-                <span>{cat.emoji}</span>
-                <span className="text-sm">{cat.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
 
-        
+          <select
+            className="select select-lg select-bordered w-full "
+            value={formCategory}
+            onChange={(e) => setFormCategory(e.target.value)}
+          >
+            <option disabled value="">
+              Choisir une catégorie
+            </option>
+
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.label}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Jour du rappel (conditonnel) */}
         {isRecurring && (
@@ -210,10 +205,10 @@ function ManualExpenseForm({ onSubmit, onCancel }: ManualExpenseFormProps) {
         {/* Bouton d'ajout */}
         <button
           onClick={handleSubmit}
-          className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold py-4 px-6 rounded-xl hover:shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mt-8"
+          className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold py-4 px-6 rounded-xl  flex items-center justify-center gap-2 mt-8"
         >
           <Plus className="w-5 h-5" />
-          Ajouter au budget
+          Ajouter
         </button>
       </div>
 
@@ -593,7 +588,7 @@ export default function Scan() {
               <p className="font-semibold text-[#1e293b]">{item.name}</p>
               <p className="text-xs text-gray-500 mt-1">{item.category}</p>
               <p className="text-lg font-bold text-[#10b981] mt-2">
-                {item.price.toFixed(2)} DH
+                {item.price.toFixed(2)}
               </p>
             </div>
             <div className="flex items-center gap-2">

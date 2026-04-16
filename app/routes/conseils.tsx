@@ -41,9 +41,9 @@ function ConseilsPersonnalisesIA() {
       <div className="mt-6 mb-6">
         <button
           onClick={handleGenerateAdvice}
-          className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold py-4 px-6 rounded-xl hover:shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3 group"
+          className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold py-4 px-6 rounded-xl   flex items-center justify-center gap-3 group"
         >
-          <Sparkles className="w-5 h-5 group-hover:animate-spin" />
+          <Sparkles className="w-5 h-5 " />
           <span>Générer mes conseils IA</span>
         </button>
       </div>
