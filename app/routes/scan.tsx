@@ -1,7 +1,6 @@
-import type { Route } from "./+types/scan";
 import { BarChart3, TrendingUp, ScanLine, Lightbulb } from "lucide-react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({}: any) {
   return [
     { title: "Mizane AI - Scan" },
     { name: "description", content: "Scan tickets for Mizane AI" },
