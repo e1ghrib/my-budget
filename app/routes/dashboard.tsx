@@ -192,9 +192,12 @@ export default function Dashboard() {
                 Tes charges fixes arrivent, tkoune prêt(e)
               </p>
             </div>
-            <button className="rounded-2xl bg-white px-3 py-2 text-sm font-semibold text-[#1e293b] shadow-sm">
+            <a
+              href="/factures"
+              className="rounded-2xl bg-white px-3 py-2 text-sm font-semibold text-[#1e293b] shadow-sm hover:shadow-md transition-shadow"
+            >
               Voir tout
-            </button>
+            </a>
           </div>
 
           <div className="grid gap-3">
