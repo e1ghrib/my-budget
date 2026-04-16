@@ -227,53 +227,6 @@ export default function Dashboard() {
             ))}
           </div>
         </section>
-
-        <section className="space-y-4">
-          <div>
-            <h2 className="text-xl font-semibold">Alternatives Malines</h2>
-            <p className="text-sm text-slate-500">
-              La communauté a trouvé mieux, chouf hna 👇
-            </p>
-          </div>
-
-          <div className="grid gap-4">
-            {recommandations.map((item) => (
-              <div
-                key={item.id}
-                className="rounded-[26px] bg-white p-4 shadow-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-400">{item.category}</p>
-                    <p className="mt-2 text-lg font-semibold text-[#1e293b]">
-                      {item.scanned}
-                    </p>
-                    <p className="text-sm text-slate-500">{item.price} DH</p>
-                  </div>
-                  <div className="rounded-3xl bg-[#f0fdf4] px-3 py-2 text-sm font-semibold text-[#15803d]">
-                    {item.label}
-                  </div>
-                </div>
-                <div className="mt-4 flex items-center justify-between gap-3 rounded-3xl bg-[#f8fafc] p-4">
-                  <div>
-                    <p className="text-sm text-slate-500">Alternative</p>
-                    <p className="mt-1 font-semibold text-[#10b981]">
-                      {item.alt}
-                    </p>
-                    <p className="text-sm text-[#10b981]">{item.altPrice} DH</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xs text-slate-400">Tu gagnes</p>
-                    <p className="mt-1 text-lg font-semibold text-[#10b981]">
-                      {item.delta} DH
-                    </p>
-                  </div>
-                </div>
-                <p className="mt-3 text-sm text-slate-500">{item.note}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
 
       <BottomNav />
