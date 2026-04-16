@@ -3,8 +3,8 @@ import { BarChart3, TrendingUp, ScanLine, Lightbulb } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Mizane AI - Stats" },
-    { name: "description", content: "Statistics for Mizane AI" },
+    { title: "My budget - Stats" },
+    { name: "description", content: "Statistics for My budget" },
   ];
 }
 

@@ -2,8 +2,8 @@ import { BarChart3, TrendingUp, ScanLine, Lightbulb } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Mizane AI - Dashboard" },
-    { name: "description", content: "Fintech dashboard for Mizane AI" },
+    { title: "My budget - Dashboard" },
+    { name: "description", content: "Fintech dashboard for My budget" },
   ];
 }
 
@@ -29,7 +29,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#f8fafc] text-gray-900">
       {/* Header */}
       <header className="bg-white shadow-sm p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-[#1e293b]">Mizane AI</h1>
+        <h1 className="text-xl font-bold text-[#1e293b]">My budget</h1>
         <button className="bg-[#10b981] text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2">
           <span>📷</span> Scanner Ticket
         </button>
