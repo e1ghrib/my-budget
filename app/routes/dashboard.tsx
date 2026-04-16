@@ -8,11 +8,12 @@ import {
   Wallet,
   Tag,
 } from "lucide-react";
+import BottomNav from "../BottomNav";
 
 export function meta({}: any) {
   return [
-    { title: "My budget - Dashboard" },
-    { name: "description", content: "My budget smart budget dashboard" },
+    { title: "My Budget - Dashboard" },
+    { name: "description", content: "My Budget smart budget dashboard" },
   ];
 }
 
@@ -84,12 +85,12 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] pb-28">
-      <header className="bg-[#1e293b] px-4 pt-6 pb-5">
+    <div className="min-h-screen  pb-28">
+      <header className="bg-white shadow-sm px-4 pt-6 pb-5">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-sm text-slate-400">My budget</p>
-            <h1 className="text-2xl font-semibold text-white">
+            <p className="text-sm text-slate-500">My Budget</p>
+            <h1 className="text-2xl font-semibold text-[#1e293b]">
               Budget intelligent
             </h1>
           </div>
@@ -99,7 +100,7 @@ export default function Dashboard() {
         </div>
 
         <div className="mt-6 grid gap-4">
-          <div className="rounded-[30px] bg-slate-950/95 p-5 shadow-[0_25px_60px_rgba(15,23,42,0.28)]">
+          <div className="rounded-[30px]  p-5 shadow-[0_25px_60px_rgba(15,23,42,0.28)]">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
@@ -112,10 +113,10 @@ export default function Dashboard() {
                   Flouss ready, mzyan pour tes achats
                 </p>
               </div>
-              <div className="rounded-3xl bg-slate-900/80 px-4 py-3 text-sm text-slate-300">
+              <div className="rounded-3xl bg-slate-900 px-4 py-3 text-sm ">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-[#10b981]" />
-                  <span>Budget sécurisé</span>
+                  <span className="text-white">Budget sécurisé</span>
                 </div>
                 <p className="mt-3 text-lg font-semibold text-white">
                   +320 DH économisé
@@ -142,7 +143,7 @@ export default function Dashboard() {
                   </p>
                 </div>
                 <div className="rounded-3xl bg-slate-950/70 p-3">
-                  <p className="text-sm text-slate-400">Objectif</p>
+                  <p className="text-sm text-slate-400">Solde</p>
                   <p className="mt-2 text-lg font-semibold text-white">
                     {budgetTotal} DH
                   </p>
@@ -275,35 +276,7 @@ export default function Dashboard() {
         </section>
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-20 bg-white/95 border-t border-slate-200/80 backdrop-blur-md p-3">
-        <div className="flex justify-around">
-          <a
-            href="/"
-            className="flex flex-col items-center text-[#10b981] font-semibold"
-          >
-            <BarChart3 className="w-6 h-6" />
-            <span className="text-[11px]">Dashboard</span>
-          </a>
-          <a
-            href="/stats"
-            className="flex flex-col items-center text-slate-500"
-          >
-            <TrendingUp className="w-6 h-6" />
-            <span className="text-[11px]">Stats</span>
-          </a>
-          <a href="/scan" className="flex flex-col items-center text-slate-500">
-            <ScanLine className="w-6 h-6" />
-            <span className="text-[11px]">Scan</span>
-          </a>
-          <a
-            href="/conseils"
-            className="flex flex-col items-center text-slate-500"
-          >
-            <Lightbulb className="w-6 h-6" />
-            <span className="text-[11px]">Conseils</span>
-          </a>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }

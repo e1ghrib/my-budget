@@ -11,6 +11,7 @@ import {
   Wallet,
   PieChart,
 } from "lucide-react";
+import BottomNav from "../BottomNav";
 
 export function meta({}: any) {
   return [
@@ -245,39 +246,7 @@ export default function Stats() {
         </section>
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-20 bg-white/95 border-t border-slate-200/80 backdrop-blur-md p-3">
-        <div className="flex justify-around">
-          <a href="/" className="flex flex-col items-center text-slate-500">
-            <BarChart3 className="w-6 h-6" />
-            <span className="text-[11px]">Dashboard</span>
-          </a>
-          <a
-            href="/stats"
-            className="flex flex-col items-center text-[#10b981] font-semibold"
-          >
-            <TrendingUp className="w-6 h-6" />
-            <span className="text-[11px]">Stats</span>
-          </a>
-          <a href="/scan" className="flex flex-col items-center text-slate-500">
-            <ScanLine className="w-6 h-6" />
-            <span className="text-[11px]">Scan</span>
-          </a>
-          <a
-            href="/factures"
-            className="flex flex-col items-center text-slate-500"
-          >
-            <FileText className="w-6 h-6" />
-            <span className="text-[11px]">Factures</span>
-          </a>
-          <a
-            href="/conseils"
-            className="flex flex-col items-center text-slate-500"
-          >
-            <Lightbulb className="w-6 h-6" />
-            <span className="text-[11px]">Conseils</span>
-          </a>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }

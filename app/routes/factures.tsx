@@ -10,6 +10,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useState } from "react";
+import BottomNav from "../BottomNav";
 
 interface RecurrentBill {
   id: string;
@@ -378,33 +379,7 @@ export default function RecurrentBills() {
         </div>
       </div>
 
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-2">
-        <div className="flex justify-around">
-          <a href="/" className="flex flex-col items-center text-slate-500">
-            <BarChart3 className="w-6 h-6" />
-            <span className="text-xs">Dashboard</span>
-          </a>
-          <a
-            href="/stats"
-            className="flex flex-col items-center text-slate-500"
-          >
-            <TrendingUp className="w-6 h-6" />
-            <span className="text-xs">Stats</span>
-          </a>
-          <a href="/scan" className="flex flex-col items-center text-slate-500">
-            <ScanLine className="w-6 h-6" />
-            <span className="text-xs">Scan</span>
-          </a>
-          <a
-            href="/conseils"
-            className="flex flex-col items-center text-slate-500"
-          >
-            <Lightbulb className="w-6 h-6" />
-            <span className="text-xs">Conseils</span>
-          </a>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }

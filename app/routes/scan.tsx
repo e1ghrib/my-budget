@@ -12,6 +12,7 @@ import {
   FileText,
 } from "lucide-react";
 import { useState } from "react";
+import BottomNav from "../BottomNav";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -185,36 +186,7 @@ export default function Scan() {
           </button>
         </div>
 
-        {/* Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2">
-          <div className="flex justify-around">
-            <a href="/" className="flex flex-col items-center text-gray-500">
-              <BarChart3 className="w-6 h-6" />
-              <span className="text-xs">Dashboard</span>
-            </a>
-            <a
-              href="/stats"
-              className="flex flex-col items-center text-gray-500"
-            >
-              <TrendingUp className="w-6 h-6" />
-              <span className="text-xs">Stats</span>
-            </a>
-            <a
-              href="/scan"
-              className="flex flex-col items-center text-[#10b981] font-medium"
-            >
-              <ScanLine className="w-6 h-6" />
-              <span className="text-xs">Scan</span>
-            </a>
-            <a
-              href="/conseils"
-              className="flex flex-col items-center text-gray-500"
-            >
-              <Lightbulb className="w-6 h-6" />
-              <span className="text-xs">Conseils</span>
-            </a>
-          </div>
-        </nav>
+        <BottomNav />
       </div>
     );
   }
@@ -235,36 +207,7 @@ export default function Scan() {
           </p>
         </div>
 
-        {/* Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2">
-          <div className="flex justify-around">
-            <a href="/" className="flex flex-col items-center text-gray-500">
-              <BarChart3 className="w-6 h-6" />
-              <span className="text-xs">Dashboard</span>
-            </a>
-            <a
-              href="/stats"
-              className="flex flex-col items-center text-gray-500"
-            >
-              <TrendingUp className="w-6 h-6" />
-              <span className="text-xs">Stats</span>
-            </a>
-            <a
-              href="/scan"
-              className="flex flex-col items-center text-[#10b981] font-medium"
-            >
-              <ScanLine className="w-6 h-6" />
-              <span className="text-xs">Scan</span>
-            </a>
-            <a
-              href="/conseils"
-              className="flex flex-col items-center text-gray-500"
-            >
-              <Lightbulb className="w-6 h-6" />
-              <span className="text-xs">Conseils</span>
-            </a>
-          </div>
-        </nav>
+        <BottomNav />
       </div>
     );
   }
@@ -346,36 +289,7 @@ export default function Scan() {
           </button>
         </div>
 
-        {/* Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2">
-          <div className="flex justify-around">
-            <a href="/" className="flex flex-col items-center text-gray-500">
-              <BarChart3 className="w-6 h-6" />
-              <span className="text-xs">Dashboard</span>
-            </a>
-            <a
-              href="/stats"
-              className="flex flex-col items-center text-gray-500"
-            >
-              <TrendingUp className="w-6 h-6" />
-              <span className="text-xs">Stats</span>
-            </a>
-            <a
-              href="/scan"
-              className="flex flex-col items-center text-[#10b981] font-medium"
-            >
-              <ScanLine className="w-6 h-6" />
-              <span className="text-xs">Scan</span>
-            </a>
-            <a
-              href="/conseils"
-              className="flex flex-col items-center text-gray-500"
-            >
-              <Lightbulb className="w-6 h-6" />
-              <span className="text-xs">Conseils</span>
-            </a>
-          </div>
-        </nav>
+        <BottomNav />
       </div>
     );
   }
@@ -453,40 +367,7 @@ export default function Scan() {
         </button>
       </div>
 
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2 z-20">
-        <div className="flex justify-around">
-          <a href="/" className="flex flex-col items-center text-gray-500">
-            <BarChart3 className="w-6 h-6" />
-            <span className="text-xs">Dashboard</span>
-          </a>
-          <a href="/stats" className="flex flex-col items-center text-gray-500">
-            <TrendingUp className="w-6 h-6" />
-            <span className="text-xs">Stats</span>
-          </a>
-          <a
-            href="/scan"
-            className="flex flex-col items-center text-[#10b981] font-medium"
-          >
-            <ScanLine className="w-6 h-6" />
-            <span className="text-xs">Scan</span>
-          </a>
-          <a
-            href="/factures"
-            className="flex flex-col items-center text-gray-500"
-          >
-            <FileText className="w-6 h-6" />
-            <span className="text-xs">Factures</span>
-          </a>
-          <a
-            href="/conseils"
-            className="flex flex-col items-center text-gray-500"
-          >
-            <Lightbulb className="w-6 h-6" />
-            <span className="text-xs">Conseils</span>
-          </a>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }
