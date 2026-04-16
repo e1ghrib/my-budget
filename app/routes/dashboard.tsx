@@ -11,8 +11,8 @@ import {
 
 export function meta({}: any) {
   return [
-    { title: "Mizane AI - Dashboard" },
-    { name: "description", content: "Mizane AI smart budget dashboard" },
+    { title: "My budget - Dashboard" },
+    { name: "description", content: "My budget smart budget dashboard" },
   ];
 }
 
@@ -88,7 +88,7 @@ export default function Dashboard() {
       <header className="bg-[#1e293b] px-4 pt-6 pb-5">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-sm text-slate-400">Mizane AI</p>
+            <p className="text-sm text-slate-400">My budget</p>
             <h1 className="text-2xl font-semibold text-white">
               Budget intelligent
             </h1>

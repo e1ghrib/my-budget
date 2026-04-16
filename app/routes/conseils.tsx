@@ -1,4 +1,10 @@
-import { BarChart3, TrendingUp, ScanLine, Lightbulb } from "lucide-react";
+import {
+  BarChart3,
+  TrendingUp,
+  ScanLine,
+  Lightbulb,
+  FileText,
+} from "lucide-react";
 
 export function meta({}: any) {
   return [
@@ -9,7 +15,7 @@ export function meta({}: any) {
 
 export default function Conseils() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-gray-900 p-4">
+    <div className="min-h-screen bg-[#f8fafc] text-gray-900 p-4 pb-20">
       <h1 className="text-xl font-bold text-[#1e293b]">Conseils</h1>
       <p className="mt-4">Page des conseils - à implémenter</p>
       {/* Bottom Navigation */}
@@ -26,6 +32,13 @@ export default function Conseils() {
           <a href="/scan" className="flex flex-col items-center text-gray-500">
             <ScanLine className="w-6 h-6" />
             <span className="text-xs">Scan</span>
+          </a>
+          <a
+            href="/factures"
+            className="flex flex-col items-center text-gray-500"
+          >
+            <FileText className="w-6 h-6" />
+            <span className="text-xs">Factures</span>
           </a>
           <a
             href="/conseils"
